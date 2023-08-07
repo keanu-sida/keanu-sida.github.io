@@ -1,0 +1,139 @@
+/* Reset browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic typography */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 0.5rem;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    color: #ccc;
+}
+
+/* Sticky navigation */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-link {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.home-link:hover h1 {
+    color: #ccc;
+}
+
+.home-logo {
+    height: 60px; /* Match this value to the height of your sticky nav */
+    width: auto;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin-right: 1rem;
+}
+
+header nav ul li {
+    margin: 0 0.5rem;
+}
+
+
+/* Sections */
+
+section:first-of-type {
+    padding-top: 6rem;
+}
+
+section {
+    padding: 2rem;
+}
+
+section h2 {
+    margin-bottom: 1rem;
+}
+
+section article {
+    margin-bottom: 1rem;
+}
+
+/* Skills list */
+section#skills ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section#skills ul li {
+    background-color: #f4f4f4;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border-radius: 5px;
+}
+
+/* Experience */
+section#experience article {
+    margin-bottom: 2rem;
+}
+
+/* Footer */
+footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #000000;
+}
