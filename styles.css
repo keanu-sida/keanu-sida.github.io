@@ -135,6 +135,11 @@ section#skills ul li {
     display: inline-block; /* Makes it wrap to next line if it runs out of space */
 }
 
+section#skills i {
+    font-size: 24px; /* Adjust the icon size */
+    margin-right: 8px; /* Space between the icon and the skill name */
+}
+
 /* Experience */
 section#experience article {
     margin-bottom: 2rem;
