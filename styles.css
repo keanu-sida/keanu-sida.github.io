@@ -12,6 +12,11 @@ body {
     color: #333;
 }
 
+/* Background Styling */ 
+body {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
 /* Header */
 header {
     background-color: #333;
@@ -42,6 +47,10 @@ header nav ul li a:hover {
     color: #ccc;
 }
 
+header nav ul li a.active {
+    border-bottom: 2px solid #fff;
+}
+
 /* Sticky navigation */
 .sticky-nav {
     position: fixed;
@@ -53,6 +62,7 @@ header nav ul li a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .home-link {
@@ -116,6 +126,15 @@ section#skills ul li {
     border-radius: 5px;
 }
 
+section#skills ul li {
+    background-color: #f4f4f4;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border-radius: 15px; /* Increased for a chip-like appearance */
+    border: 1px solid #e0e0e0; /* Adds a slight border */
+    display: inline-block; /* Makes it wrap to next line if it runs out of space */
+}
+
 /* Experience */
 section#experience article {
     margin-bottom: 2rem;
@@ -136,4 +155,36 @@ footer a {
 
 footer a:hover {
     color: #000000;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* Hover Effects */
+a, button {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.05);
+}
+
+.card-style {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card-style:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
