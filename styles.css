@@ -15,7 +15,6 @@ body {
 /* Background Styling */ 
 body {
     background: linear-gradient(135deg, #B066FE, #63E2FF);
-    max-width: 1200px;
 }
 
 /* Header */
@@ -101,6 +100,14 @@ header nav ul li {
 
 
 /* Sections */
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
 #banner {
     padding-top: 3.75rem;
     display: flex;
@@ -109,15 +116,15 @@ header nav ul li {
 
 h1 {
     font-size: 5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    background-image: linear-gradient(to right, #93e2f4, #c89cf6);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
+    background-image: linear-gradient(to right, #3bc6e5, #c89cf6);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text; /* Don't forget this for compatibility with Safari */
 }
 
 section:first-of-type {
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 #about::before {
