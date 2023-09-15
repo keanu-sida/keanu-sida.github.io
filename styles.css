@@ -117,7 +117,21 @@ h1 {
 }
 
 section:first-of-type {
-    padding-top: 2rem;
+    margin-top: 4rem;
+}
+
+#about::before {
+    content: "";
+    display: block;
+    height: 90px; /* height of your navbar or the desired offset */
+    margin: -90px 0 0; /* negative value of the height */
+}
+
+#data-science::before {
+    content: "";
+    display: block;
+    height: 90px; /* height of your navbar or the desired offset */
+    margin: -90px 0 0; /* negative value of the height */
 }
 
 section {
@@ -132,15 +146,15 @@ section article {
     margin-bottom: 1rem;
 }
 
-#projects a {
+.projects a {
     color: black;
 }
 
-#projects p {
+.projects p {
     line-height: 1.2;
 }
 
-#projects li {
+.projects li {
     margin-left: 16px;
 }
 
