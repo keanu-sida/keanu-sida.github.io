@@ -79,6 +79,10 @@ header nav ul li a.active {
     color: #ccc;
 }
 
+#mobile-logo {
+    display: none;
+}
+
 .home-logo {
     height: auto;
     max-height: 6rem;
@@ -117,7 +121,7 @@ header nav ul li {
 h1 {
     font-size: 5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
-    background-image: linear-gradient(to right, #3bc6e5, #c89cf6);
+    background-image: linear-gradient(to right, #8bb8ec, #c89cf6);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text; /* Don't forget this for compatibility with Safari */
@@ -168,13 +172,14 @@ section article {
 .icon-container {
     display: flex;
     width: auto;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 1rem 0;
 }
 
 i.devicon {
-    font-size: 6rem; 
-    /* margin: 0 4rem; */
+    font-size: 4rem; 
+    margin: 1rem 1rem;
 }
 
 i.devicon:hover {
@@ -198,10 +203,29 @@ footer a:hover {
     color: #9a9a9a;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+@media only screen and (max-width: 768px) {
+    body {
+        max-width: 100%;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    .sticky-nav {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    #mobile-logo {
+        height: 60px;
+        width: auto;
+        display: inline;
+    }
+    .home-logo {
+        display: none;
+    }
+    header nav ul {
+        margin-right: 0.4rem;
+    }
+    
 }
 
 /* Hover Effects */
