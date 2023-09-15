@@ -134,19 +134,14 @@ section#skills ul li {
     background-color: #f4f4f4;
     padding: 0.5rem 1rem;
     margin: 0 0.5rem 0.5rem 0;
-    border-radius: 15px; /* Increased for a chip-like appearance */
-    border: 1px solid #e0e0e0; /* Adds a slight border */
-    display: inline-block; /* Makes it wrap to next line if it runs out of space */
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    display: inline-block;
 }
 
 section#skills i {
     font-size: 24px; /* Adjust the icon size */
     margin-right: 8px; /* Space between the icon and the skill name */
-}
-
-/* Experience */
-section#experience article {
-    margin-bottom: 2rem;
 }
 
 /* Footer */
