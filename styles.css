@@ -76,7 +76,7 @@ header nav ul li a.active {
 }
 
 .home-logo {
-    height: 60px; /* Match this value to the height of your sticky nav */
+    height: 3.75rem; /* Match this value to the height of your sticky nav */
     width: auto;
 }
 
@@ -85,7 +85,7 @@ header nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    height: 3.75rem;
     margin-right: 1rem;
 }
 
@@ -95,6 +95,10 @@ header nav ul li {
 
 
 /* Sections */
+#banner {
+    padding-top: 3.75rem;
+}
+
 
 section:first-of-type {
     padding-top: 6rem;
