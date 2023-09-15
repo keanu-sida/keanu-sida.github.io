@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keanu Sida | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMt23cez/5paNdF+TmFE5oUlg3zK0B5P1T6fIUE" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -15,23 +15,23 @@
                 <img src="./logo2.png" alt="Keanu Sida logo" class="home-logo">
             </a>
             <ul>
-                <li><a href="#about" data-target="about">About Me</a></li>
-                <li><a href="#projects" data-target="projects">Projects</a></li>
-                <li><a href="#skills" data-target="skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#data-science">Data Science</a></li>
+                <li><a href="#full-stack">Full Stack</a></li>
             </ul>
         </nav>
     </header>
      <!-- Banner -->
     <div id="banner">
-        <h1>Welcome to Keanu's Portfolio Page!</h1>
+        <h1>Welcome!</h1>
     </div>
 
     <!-- About Me -->
     <section id="about">
         <h2>About Me</h2>
         <p>
-            I am a Charleston, SC-based full stack engineer in training. I graduated from the University of South Carolina with a Bachelor of 
-            Science in Biochemistry and Molecular Biology in December of 2020. Upon graduation, I worked at the Medical University of South Carolina in the Mulholland 
+            I am a Charleston, SC-based full stack engineer and data scientist. I graduated from the University of South Carolina with a Bachelor of 
+            Science in Biochemistry and Molecular Biology. Upon graduation, I worked at the Medical University of South Carolina in the Mulholland 
             Lab, where I was a Research Scientist. In this position, I developed an affinity for the use of software in solving complex problems in the realm of 
             neuroscience, including in analyzing tissue (through the OpenBrain library within R) and in utilizing image recognition to automate otherwise time-consuming 
             classification tasks in the study of mouse behavior. I have completed a few other projects in bioinformatics and am using this site to showcase some
@@ -41,56 +41,60 @@
     
     <!-- Projects -->
     <section id="projects">
-        <h2>Projects</h2>
-        <!-- Add your projects here -->
-        <article id="IUD-study">
-            <h3><a href="./IUD-study.pdf" target="_blank" title=>Statistical Analysis of Endometrial Transcriptome Data</a></h3>
-            <p>This work, done as a project for a Genomic Analysis class at the University of South Carolina, provided me with the opportunity to learn some
-            proprietary genomic analysis techniques. These included:
-                <ul>
-                <li>Data Preprocessing</li>
-                <li>Principal Component Analysis</li>
-                <li>Pathway Enrichment Analysis</li>
-                </ul>
-            Beyond bioinformatic data analysis, the work showcases some broader skills in the presentation of data analysis, including the use of various R libraries, 
-            R markdown, and LaTeX.
-            </p>
-        </article>
-        <article id="movie-rec">
-            <h3>Movie Recommendation System</h3>
-            <p>Description of Project 2.</p>
-        </article>
-        <article id="hotel-predict">
-            <h3>Hotel Booking Cancellation Predictor</h3>
-            <p>Description of Project 3.</p>
-        </article>
-        <article>
-            <h3>Film Finder</h3>
-            <p>Description of Project 4.</p>
-        </article>
-    </section>
-    
-    <!-- Skills -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <!-- List your skills here -->
-            <li>
-                <i class="fab fa-html5"></i> HTML
-            </li>
-            <li>
-                <i class="fab fa-css3-alt"></i> CSS
-            </li>
-            <li>
-                <i class="fab fa-java"></i> Java
-            </li>
-            <li>
-                <i class="fab fa-r-project"></i> R
-            </li>
-            <li>
-                <i class="fab fa-python"></i> Python
-            </li>
-        </ul>
+        <h2 id="data-science">Data Science Projects</h2>
+        <div class="data-pr">
+            <h3></h3>
+            <article id="IUD-study">
+                <h3><a href="./IUD-study.pdf" target="_blank" title=>Statistical Analysis of Endometrial Transcriptome Data</a></h3>
+                
+                <p>This work, done as a project for a Genomic Analysis class at the University of South Carolina, provided me with the opportunity to learn some
+                proprietary genomic analysis techniques. These included:
+                    <ul>
+                    <li>Data Preprocessing</li>
+                    <li>Principal Component Analysis</li>
+                    <li>Pathway Enrichment Analysis</li>
+                    </ul>
+                Beyond bioinformatic data analysis, the work showcases some broader skills in the presentation of data analysis, including the use of various R libraries, R markdown, and LaTeX. 
+                </p>
+                <div class="icon-container">
+                    <i class="devicon devicon-r-original colored" title="R"></i>
+                    <i class="devicon devicon-latex-original" title="LaTeX"></i>  
+                    <i class="devicon devicon-markdown-original colored" title="Markdown"></i>
+                </div>
+            </article>
+            <article id="movie-rec">
+                <h3>Movie Recommendation System</h3>
+                <p>Description of Project 2.</p>
+                <div class="icon-container">
+                    <i class="devicon devicon-python-plain-wordmark colored" title="Python"></i>
+                    <i class="devicon devicon-pandas-original-wordmark colored" title="Pandas"></i>
+                    <i class="devicon devicon-numpy-original-wordmark colored" title="NumPy"></i>
+                </div>
+            </article>
+            <article id="hotel-predict">
+                <h3>Hotel Booking Cancellation Predictor</h3>
+                <p>Description of Project 3.</p>
+                <div class="icon-container">
+                    <i class="devicon devicon-python-plain-wordmark colored" title="Python"></i>
+                    <i class="devicon devicon-pandas-original-wordmark colored" title="Pandas"></i>
+                    <i class="devicon devicon-numpy-original-wordmark colored" title="NumPy"></i>
+                </div>
+            </article>
+        </div>
+
+        <h2 id="full-stack">Full Stack Projects</h2>
+        <div>
+            <article>
+                <h3>Film Finder</h3>
+                <p>Static webpage with an API to <a href="https://developer.themoviedb.org/docs" target="_blank">tmdb</a>, a frequently updated movie and television show database. The program ties HTML, CSS, and Javascript together to allow for the generation of a random film based on genre chosen. <strong>NOTE: the application currently requires you to enter your own API key to function properly.</strong></p>
+                <div class="icon-container">
+                    <i class="devicon devicon-html5-plain-wordmark colored" title="HTML"></i>
+                    <i class="devicon devicon-css3-plain-wordmark colored" title="CSS"></i>
+                    <i class="devicon devicon-nodejs-plain-wordmark colored" title="NodeJS" style="color: black"></i>
+                    <i class="devicon devicon-javascript-plain colored" title="Javascript"></i>
+                </div>
+            </article>
+        </div>
     </section>
     
     <!-- Footer -->

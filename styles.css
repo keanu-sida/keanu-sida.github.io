@@ -14,14 +14,16 @@ body {
 
 /* Background Styling */ 
 body {
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    background: linear-gradient(135deg, #B066FE, #63E2FF);
+    max-width: 1200px;
 }
 
 /* Header */
 header {
     background-color: #333;
     padding: 1rem;
-    text-align: center;
+    justify-content:space-around;
+    padding-top: 3rem;
 }
 
 header h1 {
@@ -55,6 +57,7 @@ header nav ul li a.active {
 .sticky-nav {
     position: fixed;
     top: 0;
+    padding-top: 0.8rem;
     left: 0;
     width: 100%;
     background-color: #000000;
@@ -63,6 +66,8 @@ header nav ul li a.active {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    min-height: 4rem;
 }
 
 .home-link {
@@ -76,8 +81,9 @@ header nav ul li a.active {
 }
 
 .home-logo {
-    height: 3.75rem; /* Match this value to the height of your sticky nav */
-    width: auto;
+    height: auto;
+    max-height: 6rem;
+    max-width: 90%
 }
 
 header nav ul {
@@ -85,7 +91,7 @@ header nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3.75rem;
+    font-size: clamp(0.6rem, 1.6rem, 4vw);
     margin-right: 1rem;
 }
 
@@ -97,11 +103,21 @@ header nav ul li {
 /* Sections */
 #banner {
     padding-top: 3.75rem;
+    display: flex;
+    justify-content: center;
 }
 
+h1 {
+    font-size: 5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(to right, #93e2f4, #c89cf6);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* Don't forget this for compatibility with Safari */
+}
 
 section:first-of-type {
-    padding-top: 6rem;
+    padding-top: 2rem;
 }
 
 section {
@@ -116,32 +132,32 @@ section article {
     margin-bottom: 1rem;
 }
 
-/* Skills list */
-section#skills ul {
-    list-style-type: none;
+#projects a {
+    color: black;
+}
+
+#projects p {
+    line-height: 1.2;
+}
+
+#projects li {
+    margin-left: 16px;
+}
+
+.icon-container {
     display: flex;
-    flex-wrap: wrap;
+    width: auto;
+    justify-content: space-around;
+    padding: 1rem 0;
 }
 
-section#skills ul li {
-    background-color: #f4f4f4;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem 0.5rem 0;
-    border-radius: 5px;
+i.devicon {
+    font-size: 6rem; 
+    /* margin: 0 4rem; */
 }
 
-section#skills ul li {
-    background-color: #f4f4f4;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem 0.5rem 0;
-    border-radius: 15px;
-    border: 1px solid #e0e0e0;
-    display: inline-block;
-}
-
-section#skills i {
-    font-size: 24px; /* Adjust the icon size */
-    margin-right: 8px; /* Space between the icon and the skill name */
+i.devicon:hover {
+    color: black; /* Any color you prefer */
 }
 
 /* Footer */
@@ -158,21 +174,13 @@ footer a {
 }
 
 footer a:hover {
-    color: #000000;
+    color: #9a9a9a;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-footer {
-    flex-shrink: 0;
 }
 
 /* Hover Effects */
