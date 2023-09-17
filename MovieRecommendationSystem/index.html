@@ -1271,13 +1271,13 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>We can see from above that after tuning hyperparameters, <strong>RMSE for testset has reduced to 0.98 from 0.9925</strong>. Thus, hyperparameter tuning has slightly improved our model.</p>
 </div>
 <section id="q-34-what-is-the-predicted-rating-for-an-user-with-userid-4-and-for-movieid-10-and-movieid3-using-tuned-user-based-collaborative-filtering-1-mark" class="cell markdown" id="3gZQybgVwIB1">
-<h3><strong>Q 3.4 What is the Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3 using tuned user based collaborative filtering? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3 using tuned user based collaborative filtering:</strong></h3>
 </section>
 <div class="cell markdown" id="YhcAXK0CnVNG">
-<p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code> with the optimized model</p>
+<p>Let's now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code> with the optimized model</p>
 </div>
 <div class="cell code" data-execution_count="42" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FgV63lHiq1TV" data-outputId="0fa354ba-01c5-461f-fad4-de8099345fe6">
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>similarity_algo_optimized_user.predict(<span class="dv">4</span>,<span class="dv">10</span>, r_ui<span class="op">=</span><span class="dv">4</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>user: 4          item: 10         r_ui = 4.00   est = 3.62   {&#39;actual_k&#39;: 40, &#39;was_impossible&#39;: False}
@@ -1294,7 +1294,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>Below we are predicting rating for the same <code>userId=4</code> but for a movie which this user has not interacted before i.e. <code>movieId=3</code>, by using the optimized model as shown below -</p>
 </div>
 <div class="cell code" data-execution_count="43" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="HXO2Ztjhq1bN" data-outputId="2b48264e-fe1c-416a-b6e8-12fa6a324360">
-<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>similarity_algo_optimized_user.predict(<span class="dv">4</span>,<span class="dv">3</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>user: 4          item: 3          r_ui = None   est = 3.20   {&#39;actual_k&#39;: 40, &#39;was_impossible&#39;: False}
@@ -1331,29 +1331,29 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 <div class="cell code" data-execution_count="45" id="vW9V1Tk65HlY">
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_recommendations(data, user_id, top_n, algo):</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creating an empty list to store the recommended movie ids</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    recommendations <span class="op">=</span> []</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creating an user item interactions matrix </span></span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    user_item_interactions_matrix <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">&#39;userId&#39;</span>, columns<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, values<span class="op">=</span><span class="st">&#39;rating&#39;</span>)</span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extracting those movie ids which the user_id has not interacted yet</span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    non_interacted_movies <span class="op">=</span> user_item_interactions_matrix.loc[user_id][user_item_interactions_matrix.loc[user_id].isnull()].index.tolist()</span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Looping through each of the movie id which user_id has not interacted yet</span></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item_id <span class="kw">in</span> non_interacted_movies:</span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predicting the ratings for those non interacted movie ids by this user</span></span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>        est <span class="op">=</span> algo.predict(user_id, item_id).est</span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Appending the predicted ratings</span></span>
-<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>        recommendations.append((item_id, est))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an empty list to store the recommended movie ids</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> []</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an user item interactions matrix </span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>user_item_interactions_matrix <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">&#39;userId&#39;</span>, columns<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, values<span class="op">=</span><span class="st">&#39;rating&#39;</span>)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting those movie ids which the user_id has not interacted yet</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>non_interacted_movies <span class="op">=</span> user_item_interactions_matrix.loc[user_id][user_item_interactions_matrix.loc[user_id].isnull()].index.tolist()</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Looping through each of the movie id which user_id has not interacted yet</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item_id <span class="kw">in</span> non_interacted_movies:</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicting the ratings for those non interacted movie ids by this user</span></span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> algo.predict(user_id, item_id).est</span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Appending the predicted ratings</span></span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>recommendations.append((item_id, est))</span>
 <span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sorting the predicted ratings in descending order</span></span>
-<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>    recommendations.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorting the predicted ratings in descending order</span></span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>recommendations.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recommendations[:top_n] <span class="co"># returing top n highest predicted rating movies for this user</span></span></code></pre></div>
+<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> recommendations[:top_n] <span class="co"># returing top n highest predicted rating movies for this user</span></span></code></pre></div>
 </div>
 <section id="predicted-top-5-movies-for-userid4-with-similarity-based-recommendation-system" class="cell markdown" id="Oj_S7kh4nVNI">
 <h4><strong>Predicted top 5 movies for userId=4 with similarity based recommendation system</strong></h4>
@@ -1362,7 +1362,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> get_recommendations(rating,<span class="dv">4</span>,<span class="dv">5</span>,similarity_algo_optimized_user)</span></code></pre></div>
 </div>
 <section id="q-35-predict-the-top-5-movies-for-userid4-with-similarity-based-recommendation-system-1-mark" class="cell markdown" id="33GchLEiwICA">
-<h3><strong>Q 3.5 Predict the top 5 movies for userId=4 with similarity based recommendation system (1 Mark)</strong></h3>
+<h3><strong>Predicting the top 5 movies for userId=4 with similarity based recommendation system:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="48" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="b5WfIX0Z6_q2" data-outputId="5c10fee1-304a-46eb-badf-832370580d65">
 <div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>recommendations</span></code></pre></div>
@@ -1375,7 +1375,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="model-3-item-based-collaborative-filtering-recommendation-system-7-marks" class="cell markdown" id="pqm4J6aQwICB">
-<h2><strong>Model 3: Item based Collaborative Filtering Recommendation System (7 Marks)</strong></h2>
+<h2><strong>Item based Collaborative Filtering Recommendation System</strong></h2>
 </section>
 <div class="cell code" data-execution_count="50" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="fa8W64l5wICB" data-outputId="02ffc6ec-af7b-4775-ec5c-30e76354a1e5">
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definfing similarity measure</span></span>
@@ -1402,16 +1402,16 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="q-41-what-is-the-rmse-for-baseline-item-based-collaborative-filtering-recommendation-system-1-mark" class="cell markdown" id="oW6HXjoVwICC">
-<h3><strong>Q 4.1 What is the RMSE for baseline item based collaborative filtering recommendation system ?(1 Mark)</strong></h3>
+<h3><strong>RMSE for baseline item based collaborative filtering recommendation system</strong></h3>
 </section>
 <div class="cell markdown" id="dsagkpFDwICD">
 <p>The baseline item-based system has an RMSE of <strong>1.0032</strong>.</p>
 </div>
 <div class="cell markdown" id="uXRReHXt2UD8">
-<p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code></p>
+<p>Let's now predict rating for an user with <code>userId=4</code> and for <code>movieId=10.</code></p>
 </div>
 <section id="q-42-what-is-the-predicted-rating-for-an-user-with-userid-4-and-for-movieid-10-and-movieid3-1-mark" class="cell markdown" id="egyW6VMYwICD">
-<h3><strong>Q 4.2 What is the Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="51" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="RmzxmaDbwICE" data-outputId="06c6b741-5547-4b3c-e3a2-6ed015ed4a94" data-scrolled="true">
 <div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>algo_knn_item.predict(<span class="dv">4</span>,<span class="dv">10</span>, r_ui<span class="op">=</span><span class="dv">4</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
@@ -1443,10 +1443,10 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>The system predicts a rating of <strong>4.07</strong> for user 4 for movie 3.</p>
 </div>
 <section id="q-43-perform-hyperparameter-tuning-for-the-baseline-item-based-collaborative-filtering-recommendation-system-and-find-the-rmse-for-tuned-item-based-collaborative-filtering-recommendation-system-3-marks" class="cell markdown" id="utHBZ67JwICI">
-<h3><strong>Q 4.3 Perform hyperparameter tuning for the baseline item based collaborative filtering recommendation system and find the RMSE for tuned item based collaborative filtering recommendation system? (3 Marks)</strong></h3>
+<h3><strong>Performing hyperparameter tuning for the baseline item based collaborative filtering recommendation system and find the RMSE for tuned item based collaborative filtering recommendation system?</strong></h3>
 </section>
 <div class="cell code" data-execution_count="53" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="0ZmIvW--wICJ" data-outputId="c59801dd-6290-4121-8cf7-cbd266e2dda2">
-<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python">
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting up parameter grid to tune the hyperparameters</span></span>
 <span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&#39;k&#39;</span>: [<span class="dv">20</span>, <span class="dv">30</span>,<span class="dv">40</span>], <span class="st">&#39;min_k&#39;</span>: [<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>],</span>
@@ -1748,10 +1748,10 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>The final model has a RMSE of <strong>0.9465</strong>.</p>
 </div>
 <section id="q-44-what-is-the-predicted-rating-for-an-item-with-userid-4-and-for-movieid-10-and-movieid3-using-tuned-item-based-collaborative-filtering-1-mark" class="cell markdown" id="tiDcRQDvwICN">
-<h3><strong>Q 4.4 What is the Predicted rating for an item with userId =4 and for movieId= 10 and movieId=3 using tuned item based collaborative filtering? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an item with userId =4 and for movieId= 10 and movieId=3 using tuned item based collaborative filtering?</strong></h3>
 </section>
 <div class="cell markdown" id="5IGjjEtpwICN">
-<p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code> with the optimized model as shown below</p>
+<p>Let's now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code> with the optimized model as shown below</p>
 </div>
 <div class="cell code" data-execution_count="56" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="Wg8APEG4wICO" data-outputId="19ce0650-267b-463d-9491-a3d5e26365ee">
 <div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>similarity_algo_optimized_item.predict(<span class="dv">4</span>,<span class="dv">10</span>, r_ui<span class="op">=</span><span class="dv">4</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
@@ -1799,7 +1799,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> get_recommendations(rating, <span class="dv">4</span>, <span class="dv">5</span>, similarity_algo_optimized_item)</span></code></pre></div>
 </div>
 <section id="q-45-predict-the-top-5-movies-for-userid4-with-similarity-based-recommendation-system-1-mark" class="cell markdown" id="_cDPuGWcwICb">
-<h3><strong>Q 4.5 Predict the top 5 movies for userId=4 with similarity based recommendation system (1 Mark)</strong></h3>
+<h3><strong>Predicting the top 5 movies for userId=4 with similarity based recommendation system:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="60" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kJICKPecwICb" data-outputId="855e332c-8468-497f-e8a6-7ded7c2bd7bd">
 <div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>recommendations</span></code></pre></div>
@@ -1808,29 +1808,12 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="model-4-based-collaborative-filtering---matrix-factorization-using-svd-7-marks" class="cell markdown" id="rKgJpSA9vOOL">
-<h2><strong>Model 4: Based Collaborative Filtering - Matrix Factorization using SVD (7 Marks)</strong></h2>
+<h2><strong>Model-Based Collaborative Filtering (Matrix Factorization using SVD)</strong></h2>
 </section>
 <div class="cell markdown" id="YF6ZGyqhCAob">
 <p>Model-based Collaborative Filtering is a <strong>personalized recommendation system</strong>, the recommendations are based on the past behavior of the user and it is not dependent on any additional information. We use <strong>latent features</strong> to find recommendations for each user.</p>
 </div>
 <div class="cell markdown" id="uxGWVpOMvOOL">
-<p><strong>Latent Features:</strong> The features that are not present in the empirical data but can be inferred from the data. For example:</p>
-</div>
-<div class="cell markdown" id="ZfVDC0IuvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/2d9b2c9fdda625de45d5c004b11ed49e4d29a872.png" alt="test_image" /></p>
-</div>
-<div class="cell markdown" id="W2TTW8YfvOOL">
-<p>Now if we notice the above movies closely:</p>
-</div>
-<div class="cell markdown" id="RDcl6w2WvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/b8725b83f50b30d78a408b0569be04ad2406afcf.png" alt="test_image" /></p>
-</div>
-<div class="cell markdown" id="3l7fsZWNvOOL">
-<p>Here <strong>Action</strong>, <strong>Romance</strong>, <strong>Suspense</strong> and <strong>Comedy</strong> are latent features of the corresponding movies. Similarly, we can compute the latent features for users as shown below:</p>
-</div>
-<div class="cell markdown" id="0Ad4w7bvvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/8b49e32131c08b6a6039c4dc3c3e1d920e6c8b9d.png" alt="test_image" /></p>
-</div>
 <section id="singular-value-decomposition-svd" class="cell markdown" id="n4Otha8ovOOL">
 <h3><strong>Singular Value Decomposition (SVD)</strong></h3>
 </section>
@@ -1838,19 +1821,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>SVD is used to <strong>compute the latent features</strong> from the <strong>user-item matrix</strong>. But SVD does not work when we <strong>miss values</strong> in the <strong>user-item matrix</strong>.</p>
 </div>
 <div class="cell markdown" id="C80zDC6xvOOL">
-<p>First we need to convert the below movie-rating dataset:</p>
-</div>
-<div class="cell markdown" id="xA_MGBrwvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/2d9b2c9fdda625de45d5c004b11ed49e4d29a872.png" alt="test_image" /></p>
-</div>
-<div class="cell markdown" id="3q39l4__vOOL">
-<p>into an user-item matrix as shown below:</p>
-</div>
-<div class="cell markdown" id="kAz3MNfEvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/58777c856a24dcbbccc71c031f33d61b0beb9c0e.png" alt="test_image" /></p>
-</div>
-<div class="cell markdown" id="6piwQzq3vOOL">
-<p>We have already done this above while computing cosine similarities.</p>
+<p>First we need to convert the movie-rating dataset into an user-item matrix. We have already done this above while computing cosine similarities.</p>
 </div>
 <div class="cell markdown" id="gOzTLIfIvOOL">
 <p><strong>SVD decomposes this above matrix into three separate matrices:</strong></p>
@@ -1863,11 +1834,8 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <section id="u-matrix" class="cell markdown" id="IVq1fCrBvOOL">
 <h4><strong>U-matrix</strong></h4>
 </section>
-<div class="cell markdown" id="Y9wsChCmvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/d6cdbd767fe9c1bb808480975e957e6f1b5c9175.png" alt="test_image" /></p>
-</div>
 <div class="cell markdown" id="hA1dXvYXvOOL">
-<p>the above matrix is a n x k matrix, where:</p>
+<p>An n x k matrix, where:</p>
 <ul>
 <li>n is number of users</li>
 <li>k is number of latent features</li>
@@ -1876,11 +1844,8 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <section id="sigma-matrix" class="cell markdown" id="dplq-n9dvOOL">
 <h4><strong>Sigma-matrix</strong></h4>
 </section>
-<div class="cell markdown" id="kB6jCN5svOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/500cbb904c6d9ddc7ff1d9f3f87ab4e718a20fe4.png" alt="test_image" /></p>
-</div>
 <div class="cell markdown" id="-twhbZ3wvOOL">
-<p>the above matrix is a k x k matrix, where:</p>
+<p>A k x k matrix, where:</p>
 <ul>
 <li>k is number of latent features</li>
 <li>Each diagonal entry is the singular value of the original interaction matrix</li>
@@ -1889,11 +1854,8 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <section id="v-transpose-matrix" class="cell markdown" id="nr0dF0XcvOOL">
 <h4><strong>V-transpose matrix</strong></h4>
 </section>
-<div class="cell markdown" id="hz82XFEgvOOL">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/8792a2e0bcc00eabfcbd70500f4fefad42c8fe1c.png" alt="test_image" /></p>
-</div>
 <div class="cell markdown" id="o9B1119q2N-M">
-<p>the above matrix is a kxn matrix, where:</p>
+<p>A k x n matrix, where:</p>
 <ul>
 <li>k is the number of latent features</li>
 <li>n is the number of items</li>
@@ -1923,16 +1885,16 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="q-51-what-is-the-rmse-for-baseline-svd-based-collaborative-filtering-recommendation-system-1-mark" class="cell markdown" id="2271PkTuwICu">
-<h3><strong>Q 5.1 What is the RMSE for baseline SVD based collaborative filtering recommendation system? (1 Mark)</strong></h3>
+<h3><strong>RMSE for baseline SVD based collaborative filtering recommendation system:</strong></h3>
 </section>
 <div class="cell markdown" id="BQ6fTuCDnVNL">
 <p>The baseline SVD-based system has an RMSE of <strong>0.9031</strong>.</p>
 </div>
 <section id="q-52-what-is-the-predicted-rating-for-an-user-with-userid-4-and-for-movieid-10-and-movieid3-1-mark" class="cell markdown" id="fsBGQrwCwICv">
-<h3><strong>Q 5.2 What is the Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3:</strong></h3>
 </section>
 <div class="cell markdown" id="HD2AU1DnnVNM">
-<p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code></p>
+<p>Let's now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code></p>
 </div>
 <div class="cell code" data-execution_count="62" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="yWIhfdxXsjqm" data-outputId="bd45be13-4bc7-4ff6-ec97-c4f1a5344095">
 <div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>algo_svd.predict(<span class="dv">4</span>, <span class="dv">10</span>, r_ui<span class="op">=</span><span class="dv">4</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
@@ -1982,13 +1944,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p><span class="math display">∑<sub><em>r</em><sub><em>u</em><em>i</em></sub> ∈ <em>R</em><sub>train </sub></sub>(<em>r</em><sub><em>u</em><em>i</em></sub>−<em>r̂</em><sub><em>u</em><em>i</em></sub>)<sup>2</sup> + <em>λ</em>(<em>b</em><sub><em>i</em></sub><sup>2</sup>+<em>b</em><sub><em>u</em></sub><sup>2</sup>+∥<em>q</em><sub><em>i</em></sub>∥<sup>2</sup>+∥<em>p</em><sub><em>u</em></sub>∥<sup>2</sup>)</span></p>
 </div>
 <div class="cell markdown" id="-GBMNL9qnVNN">
-<p>The minimization is performed by a very straightforward <strong>stochastic gradient descent</strong>:</p>
-</div>
-<div class="cell markdown" id="CwJJRsJGnVNN">
-<p><span class="math display">$$\begin{aligned} b_{u} &amp; \leftarrow b_{u}+\gamma\left(e_{u i}-\lambda b_{u}\right) \\ b_{i} &amp; \leftarrow b_{i}+\gamma\left(e_{u i}-\lambda b_{i}\right) \\ p_{u} &amp; \leftarrow p_{u}+\gamma\left(e_{u i} \cdot q_{i}-\lambda p_{u}\right) \\ q_{i} &amp; \leftarrow q_{i}+\gamma\left(e_{u i} \cdot p_{u}-\lambda q_{i}\right) \end{aligned}$$</span></p>
-</div>
-<div class="cell markdown" id="nuRjcsUknVNN">
-<p>There are many hyperparameters to tune in this algorithm, you can find a full list of hyperparameters <a href="https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD">here</a></p>
+<p>The minimization is performed by a <strong>stochastic gradient descent</strong>. There are many hyperparameters to tune in this algorithm, you can find a full list of hyperparameters <a href="https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD">here</a>.</p>
 </div>
 <div class="cell markdown" id="iQcDPhhcnVNN">
 <p>Below we will be tuning only three hyperparameters -</p>
@@ -1999,7 +1955,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </ul>
 </div>
 <section id="q-53-perform-hyperparameter-tuning-for-the-baseline-svd-based-collaborative-filtering-recommendation-system-and-find-the-rmse-for-tuned-svd-based-collaborative-filtering-recommendation-system-3-marks" class="cell markdown" id="ksN4zUnUwIC_">
-<h3><strong>Q 5.3 Perform hyperparameter tuning for the baseline SVD based collaborative filtering recommendation system and find the RMSE for tuned SVD based collaborative filtering recommendation system? (3 Marks)</strong></h3>
+<h3><strong>Performing hyperparameter tuning for the baseline SVD based collaborative filtering recommendation system and finding the RMSE for tuned SVD based collaborative filtering recommendation system:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="64" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="4bM81V_hvtwv" data-outputId="a5373a30-89f0-432a-e00a-4dc624eb37b7">
 <div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the parameter space to tune</span></span>
@@ -2297,7 +2253,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="q-54-what-is-the-predicted-rating-for-an-user-with-userid-4-and-for-movieid-10-and-movieid3-using-svd-based-collaborative-filtering-1-mark" class="cell markdown" id="UruWuDiCwIDE">
-<h3><strong>Q 5.4 What is the Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3 using SVD based collaborative filtering? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an user with userId =4 and for movieId= 10 and movieId=3 using SVD based collaborative filtering:</strong></h3>
 </section>
 <div class="cell markdown" id="md0-dL56nVNO">
 <p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code> with the optimized model</p>
@@ -2332,7 +2288,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>The predicted rating of movie 3 for user 4 using SVD collab filtering is <strong>3.649</strong>.</p>
 </div>
 <section id="q-55-predict-the-top-5-movies-for-userid4-with-svd-based-recommendation-system1-mark" class="cell markdown" id="5jlUBrbFwIDH">
-<h3><strong>Q 5.5 Predict the top 5 movies for userId=4 with SVD based recommendation system?(1 Mark)</strong></h3>
+<h3><strong>Predicting the top 5 movies for userId=4 with SVD based recommendation system:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="70" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="1LGeE2EB_n90" data-outputId="86d474d6-cbd0-4fd8-b32a-311697d19dab">
 <div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>get_recommendations(rating, <span class="dv">4</span>, <span class="dv">5</span>, svd_algo_optimized)</span></code></pre></div>
@@ -2345,39 +2301,39 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="predicting-ratings-for-already-interacted-movies" class="cell markdown" id="xgKmqss1vqGz">
-<h3><strong>Predicting ratings for already interacted movies</strong></h3>
+<h3><strong>Predicting ratings for already interacted movies:</strong></h3>
 </section>
 <div class="cell markdown" id="nNlUEB13wIDJ">
 <p>Below we are comparing the rating predictions of users for those movies which has been already watched by an user. This will help us to understand how well are predictions are as compared to the actual ratings provided by users</p>
 </div>
 <div class="cell code" data-execution_count="71" id="hQIPHA7-vg7W">
 <div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict_already_interacted_ratings(data, user_id, algo):</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creating an empty list to store the recommended movie ids</span></span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    recommendations <span class="op">=</span> []</span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creating an user item interactions matrix </span></span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>    user_item_interactions_matrix <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">&#39;userId&#39;</span>, columns<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, values<span class="op">=</span><span class="st">&#39;rating&#39;</span>)</span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extracting those movie ids which the user_id has interacted already</span></span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>    interacted_movies <span class="op">=</span> user_item_interactions_matrix.loc[user_id][user_item_interactions_matrix.loc[user_id].notnull()].index.tolist()</span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Looping through each of the movie id which user_id has interacted already</span></span>
-<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item_id <span class="kw">in</span> interacted_movies:</span>
-<span id="cb115-14"><a href="#cb115-14" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb115-15"><a href="#cb115-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extracting actual ratings</span></span>
-<span id="cb115-16"><a href="#cb115-16" aria-hidden="true" tabindex="-1"></a>        actual_rating <span class="op">=</span> user_item_interactions_matrix.loc[user_id, item_id]</span>
-<span id="cb115-17"><a href="#cb115-17" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb115-18"><a href="#cb115-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predicting the ratings for those non interacted movie ids by this user</span></span>
-<span id="cb115-19"><a href="#cb115-19" aria-hidden="true" tabindex="-1"></a>        predicted_rating <span class="op">=</span> algo.predict(user_id, item_id).est</span>
-<span id="cb115-20"><a href="#cb115-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb115-21"><a href="#cb115-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Appending the predicted ratings</span></span>
-<span id="cb115-22"><a href="#cb115-22" aria-hidden="true" tabindex="-1"></a>        recommendations.append((item_id, actual_rating, predicted_rating))</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an empty list to store the recommended movie ids</span></span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>recommendations <span class="op">=</span> []</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an user item interactions matrix </span></span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>user_item_interactions_matrix <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">&#39;userId&#39;</span>, columns<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, values<span class="op">=</span><span class="st">&#39;rating&#39;</span>)</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting those movie ids which the user_id has interacted already</span></span>
+<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>interacted_movies <span class="op">=</span> user_item_interactions_matrix.loc[user_id][user_item_interactions_matrix.loc[user_id].notnull()].index.tolist()</span>
+<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Looping through each of the movie id which user_id has interacted already</span></span>
+<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item_id <span class="kw">in</span> interacted_movies:</span>
+<span id="cb115-14"><a href="#cb115-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-15"><a href="#cb115-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting actual ratings</span></span>
+<span id="cb115-16"><a href="#cb115-16" aria-hidden="true" tabindex="-1"></a>actual_rating <span class="op">=</span> user_item_interactions_matrix.loc[user_id, item_id]</span>
+<span id="cb115-17"><a href="#cb115-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-18"><a href="#cb115-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicting the ratings for those non interacted movie ids by this user</span></span>
+<span id="cb115-19"><a href="#cb115-19" aria-hidden="true" tabindex="-1"></a>predicted_rating <span class="op">=</span> algo.predict(user_id, item_id).est</span>
+<span id="cb115-20"><a href="#cb115-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-21"><a href="#cb115-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Appending the predicted ratings</span></span>
+<span id="cb115-22"><a href="#cb115-22" aria-hidden="true" tabindex="-1"></a>recommendations.append((item_id, actual_rating, predicted_rating))</span>
 <span id="cb115-23"><a href="#cb115-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-24"><a href="#cb115-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sorting the predicted ratings in descending order</span></span>
-<span id="cb115-25"><a href="#cb115-25" aria-hidden="true" tabindex="-1"></a>    recommendations.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb115-24"><a href="#cb115-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorting the predicted ratings in descending order</span></span>
+<span id="cb115-25"><a href="#cb115-25" aria-hidden="true" tabindex="-1"></a>recommendations.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb115-26"><a href="#cb115-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-27"><a href="#cb115-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(recommendations, columns<span class="op">=</span>[<span class="st">&#39;movieId&#39;</span>, <span class="st">&#39;actual_rating&#39;</span>, <span class="st">&#39;predicted_rating&#39;</span>]) <span class="co"># returing top n highest predicted rating movies for this user</span></span></code></pre></div>
+<span id="cb115-27"><a href="#cb115-27" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> pd.DataFrame(recommendations, columns<span class="op">=</span>[<span class="st">&#39;movieId&#39;</span>, <span class="st">&#39;actual_rating&#39;</span>, <span class="st">&#39;predicted_rating&#39;</span>]) <span class="co"># returing top n highest predicted rating movies for this user</span></span></code></pre></div>
 </div>
 <div class="cell markdown" id="5T0q833lwIDK">
 <p>Here we are comparing the predicted ratings by <code>similarity based recommendation</code> system against actual ratings for <code>userId=7</code></p>
@@ -2386,9 +2342,6 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <div class="sourceCode" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>predicted_ratings_for_interacted_movies <span class="op">=</span> predict_already_interacted_ratings(rating, <span class="dv">7</span>, similarity_algo_optimized_item)</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> predicted_ratings_for_interacted_movies.melt(id_vars<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, value_vars<span class="op">=</span>[<span class="st">&#39;actual_rating&#39;</span>, <span class="st">&#39;predicted_rating&#39;</span>])</span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">&#39;value&#39;</span>, hue<span class="op">=</span><span class="st">&#39;variable&#39;</span>, kde<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code></pre></div>
-<div class="output display_data">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/715ecfcc8a99ff1f9055ca8b850865c926e20f0e.png" /></p>
-</div>
 </div>
 <div class="cell markdown" id="jfNXSEw9wIDM">
 <p>Below we are comparing the predicted ratings by <code>matrix factorization based recommendation</code> system against actual ratings for <code>userId=7</code></p>
@@ -2397,9 +2350,6 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <div class="sourceCode" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>predicted_ratings_for_interacted_movies <span class="op">=</span> predict_already_interacted_ratings(rating, <span class="dv">7</span>, svd_algo_optimized)</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> predicted_ratings_for_interacted_movies.melt(id_vars<span class="op">=</span><span class="st">&#39;movieId&#39;</span>, value_vars<span class="op">=</span>[<span class="st">&#39;actual_rating&#39;</span>, <span class="st">&#39;predicted_rating&#39;</span>])</span>
 <span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">&#39;value&#39;</span>, hue<span class="op">=</span><span class="st">&#39;variable&#39;</span>, kde<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code></pre></div>
-<div class="output display_data">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/f083e4ed4fb406576c4f9abfeba7e8775763ca63.png" /></p>
-</div>
 </div>
 <div class="cell code" data-execution_count="74" id="aT0zASb-wIDO">
 <div class="sourceCode" id="cb118"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiating Reader scale with expected rating scale</span></span>
@@ -2418,52 +2368,49 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p><strong><a href="mailto:Recall@k" class="email">Recall@k</a></strong> - It is the <strong>fraction of relevant items that are recommended to the user in <code>top k</code> predictions</strong>.</p>
 <p><strong>Recall</strong> - It is the <strong>fraction of actually relevant items that are recommended to the user</strong> i.e. if out of 10 relevant movies, 6 are recommended to the user then recall is 0.60. Higher the value of recall better is the model. It is one of the metrics to do the performance assessment of classification models.</p>
 <p><strong>Precision</strong> - It is the <strong>fraction of recommended items that are relevant actually</strong> i.e. if out of 10 recommended items, 6 are found relevant by the user then precision is 0.60. The higher the value of precision better is the model. It is one of the metrics to do the performance assessment of classification models.</p>
-<p>See the Precision and Recall @ k section of your notebook and follow the instructions to compute various precision/recall values at various values of k.</p>
-<p>To know more about precision recall in Recommendation systems refer to these links :</p>
-<p><a href="https://surprise.readthedocs.io/en/stable/FAQ.html" class="uri">https://surprise.readthedocs.io/en/stable/FAQ.html</a></p>
-<p><a href="https://medium.com/@m_n_malaeb/recall-and-precision-at-k-for-recommender-systems-618483226c54" class="uri">https://medium.com/@m_n_malaeb/recall-and-precision-at-k-for-recommender-systems-618483226c54</a></p>
+<p>To know more about precision recall in recommendation systems, you can refer to the <a href="https://surprise.readthedocs.io/en/stable/FAQ.html" class="uri">documentation</a> or <a href="https://medium.com/@m_n_malaeb/recall-and-precision-at-k-for-recommender-systems-618483226c54" class="uri">this Medium article.</a></p>
 </section>
 <section id="question-6-compute-the-precision-and-recall-for-each-of-the-6-models-at-k--5-and-10-this-is-6-x-2--12-numerical-values-4-marks" class="cell markdown" id="b_norGWOwIDP">
-<h3><strong>Question 6: Compute the precision and recall, for each of the 6 models, at k = 5 and 10. This is 6 x 2 = 12 numerical values? (4 marks)</strong></h3>
+<h3><strong>Computing the precision and recall, for each of the 6 models, at k = 5 and 10:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="75" id="gihoUY5uwIDQ" data-scrolled="false">
 <div class="sourceCode" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function can be found on surprise documentation FAQs</span></span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precision_recall_at_k(predictions, k<span class="op">=</span><span class="dv">10</span>, threshold<span class="op">=</span><span class="fl">3.5</span>):</span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Return precision and recall at k metrics for each user&quot;&quot;&quot;</span></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;Return precision and recall at k metrics for each user&quot;&quot;&quot;</span></span>
 <span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First map the predictions to each user.</span></span>
-<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>    user_est_true <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
-<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> uid, _, true_r, est, _ <span class="kw">in</span> predictions:</span>
-<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>        user_est_true[uid].append((est, true_r))</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="co"># First map the predictions to each user.</span></span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>user_est_true <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> uid, _, true_r, est, _ <span class="kw">in</span> predictions:</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>user_est_true[uid].append((est, true_r))</span>
 <span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a>    precisions <span class="op">=</span> <span class="bu">dict</span>()</span>
-<span id="cb119-11"><a href="#cb119-11" aria-hidden="true" tabindex="-1"></a>    recalls <span class="op">=</span> <span class="bu">dict</span>()</span>
-<span id="cb119-12"><a href="#cb119-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> uid, user_ratings <span class="kw">in</span> user_est_true.items():</span>
+<span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a>precisions <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb119-11"><a href="#cb119-11" aria-hidden="true" tabindex="-1"></a>recalls <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb119-12"><a href="#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> uid, user_ratings <span class="kw">in</span> user_est_true.items():</span>
 <span id="cb119-13"><a href="#cb119-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-14"><a href="#cb119-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Sort user ratings by estimated value</span></span>
-<span id="cb119-15"><a href="#cb119-15" aria-hidden="true" tabindex="-1"></a>        user_ratings.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb119-14"><a href="#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort user ratings by estimated value</span></span>
+<span id="cb119-15"><a href="#cb119-15" aria-hidden="true" tabindex="-1"></a>user_ratings.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb119-16"><a href="#cb119-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-17"><a href="#cb119-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Number of relevant items</span></span>
-<span id="cb119-18"><a href="#cb119-18" aria-hidden="true" tabindex="-1"></a>        n_rel <span class="op">=</span> <span class="bu">sum</span>((true_r <span class="op">&gt;=</span> threshold) <span class="cf">for</span> (_, true_r) <span class="kw">in</span> user_ratings)</span>
+<span id="cb119-17"><a href="#cb119-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of relevant items</span></span>
+<span id="cb119-18"><a href="#cb119-18" aria-hidden="true" tabindex="-1"></a>n_rel <span class="op">=</span> <span class="bu">sum</span>((true_r <span class="op">&gt;=</span> threshold) <span class="cf">for</span> (_, true_r) <span class="kw">in</span> user_ratings)</span>
 <span id="cb119-19"><a href="#cb119-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-20"><a href="#cb119-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Number of recommended items in top k</span></span>
-<span id="cb119-21"><a href="#cb119-21" aria-hidden="true" tabindex="-1"></a>        n_rec_k <span class="op">=</span> <span class="bu">sum</span>((est <span class="op">&gt;=</span> threshold) <span class="cf">for</span> (est, _) <span class="kw">in</span> user_ratings[:k])</span>
+<span id="cb119-20"><a href="#cb119-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of recommended items in top k</span></span>
+<span id="cb119-21"><a href="#cb119-21" aria-hidden="true" tabindex="-1"></a>n_rec_k <span class="op">=</span> <span class="bu">sum</span>((est <span class="op">&gt;=</span> threshold) <span class="cf">for</span> (est, _) <span class="kw">in</span> user_ratings[:k])</span>
 <span id="cb119-22"><a href="#cb119-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-23"><a href="#cb119-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Number of relevant and recommended items in top k</span></span>
-<span id="cb119-24"><a href="#cb119-24" aria-hidden="true" tabindex="-1"></a>        n_rel_and_rec_k <span class="op">=</span> <span class="bu">sum</span>(((true_r <span class="op">&gt;=</span> threshold) <span class="kw">and</span> (est <span class="op">&gt;=</span> threshold))</span>
-<span id="cb119-25"><a href="#cb119-25" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">for</span> (est, true_r) <span class="kw">in</span> user_ratings[:k])</span>
+<span id="cb119-23"><a href="#cb119-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of relevant and recommended items in top k</span></span>
+<span id="cb119-24"><a href="#cb119-24" aria-hidden="true" tabindex="-1"></a>n_rel_and_rec_k <span class="op">=</span> <span class="bu">sum</span>(((true_r <span class="op">&gt;=</span> threshold) <span class="kw">and</span> (est <span class="op">&gt;=</span> threshold))</span>
+<span id="cb119-25"><a href="#cb119-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (est, true_r) <span class="kw">in</span> user_ratings[:k])</span>
 <span id="cb119-26"><a href="#cb119-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-27"><a href="#cb119-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Precision@K: Proportion of recommended items that are relevant</span></span>
-<span id="cb119-28"><a href="#cb119-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># When n_rec_k is 0, Precision is undefined. We here set it to 0.</span></span>
+<span id="cb119-27"><a href="#cb119-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Precision@K: Proportion of recommended items that are relevant</span></span>
+<span id="cb119-28"><a href="#cb119-28" aria-hidden="true" tabindex="-1"></a><span class="co"># When n_rec_k is 0, Precision is undefined. We here set it to 0.</span></span>
 <span id="cb119-29"><a href="#cb119-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-30"><a href="#cb119-30" aria-hidden="true" tabindex="-1"></a>        precisions[uid] <span class="op">=</span> n_rel_and_rec_k <span class="op">/</span> n_rec_k <span class="cf">if</span> n_rec_k <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb119-30"><a href="#cb119-30" aria-hidden="true" tabindex="-1"></a>precisions[uid] <span class="op">=</span> n_rel_and_rec_k <span class="op">/</span> n_rec_k <span class="cf">if</span> n_rec_k <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
 <span id="cb119-31"><a href="#cb119-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-32"><a href="#cb119-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Recall@K: Proportion of relevant items that are recommended</span></span>
-<span id="cb119-33"><a href="#cb119-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># When n_rel is 0, Recall is undefined. We here set it to 0.</span></span>
+<span id="cb119-32"><a href="#cb119-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall@K: Proportion of relevant items that are recommended</span></span>
+<span id="cb119-33"><a href="#cb119-33" aria-hidden="true" tabindex="-1"></a><span class="co"># When n_rel is 0, Recall is undefined. We here set it to 0.</span></span>
 <span id="cb119-34"><a href="#cb119-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-35"><a href="#cb119-35" aria-hidden="true" tabindex="-1"></a>        recalls[uid] <span class="op">=</span> n_rel_and_rec_k <span class="op">/</span> n_rel <span class="cf">if</span> n_rel <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb119-35"><a href="#cb119-35" aria-hidden="true" tabindex="-1"></a>recalls[uid] <span class="op">=</span> n_rel_and_rec_k <span class="op">/</span> n_rel <span class="cf">if</span> n_rel <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
 <span id="cb119-36"><a href="#cb119-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-37"><a href="#cb119-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> precisions, recalls</span>
+<span id="cb119-37"><a href="#cb119-37" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> precisions, recalls</span>
 <span id="cb119-38"><a href="#cb119-38" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 </div>
 <div class="cell code" data-execution_count="76" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="57qD5TFRnm1W" data-outputId="78dee03f-cc99-4629-96dd-190528fbb87c">
@@ -2473,13 +2420,13 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make list of k values</span></span>
 <span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">10</span>]</span>
 <span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make list of models</span></span>
 <span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> [algo_knn_user, similarity_algo_optimized_user,algo_knn_item,similarity_algo_optimized_item, algo_svd, svd_algo_optimized]</span>
 <span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> K:</span>
-<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> model <span class="kw">in</span> models:</span>
-<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&#39;&gt; k=</span><span class="sc">{}</span><span class="st">, model=</span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(k,model.__class__.<span class="va">__name__</span>))</span>
+<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> model <span class="kw">in</span> models:</span>
+<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;&gt; k=</span><span class="sc">{}</span><span class="st">, model=</span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(k,model.__class__.<span class="va">__name__</span>))</span>
 <span id="cb120-14"><a href="#cb120-14" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> []</span>
 <span id="cb120-15"><a href="#cb120-15" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> []</span>
 <span id="cb120-16"><a href="#cb120-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> trainset, testset <span class="kw">in</span> kf.split(data):</span>
@@ -2533,20 +2480,14 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </code></pre>
 </div>
 </div>
-<section id="question-7--5-marks" class="cell markdown" id="08dezW5P6O1Z">
-<h3><strong>Question 7 ( 5 Marks)</strong></h3>
-<p><strong>7.1 Compare the results from the base line user-user and item-item based models.</strong></p>
-<p><strong>7.2 How do these baseline models compare to each other with respect to the tuned user-user and item-item models?</strong></p>
-<p><strong>7.3 The matrix factorization model is different from the collaborative filtering models. Briefly describe this difference. Also, compare the RMSE and precision recall for the models.</strong></p>
-<p><strong>7.4 Does it improve? Can you offer any reasoning as to why that might be?</strong></p>
+<section class="cell markdown" id="08dezW5P6O1Z">
+<h3><strong>Discussion</strong></h3>
 </section>
 <div class="cell markdown" id="2W0MdIZ1wIDS">
-<p>Baseline user-based and item-based Collaborative Models have nearly the same RMSE values.</p>
-<p>Clearly, tuned Collaborative Filtering Models have performed better than baseline model and the user-user based tuned model is performing better and have rmse of 0.9908.</p>
+<p>Baseline user-based and item-based Collaborative Models have nearly the same RMSE values. Clearly, tuned Collaborative Filtering Models have performed better than baseline model and the user-user based tuned model is performing better and have rmse of 0.9908.</p>
 <p>The Collaborative Models use the user-item-ratings data to find similarities and make predictions rather than just predicting a random rating based on the distribution of the data. This could a reason why the Collaborative filtering performed well.</p>
 <p>Collaborative Filtering searches for neighbors based on similarity of item (example) preferences and recommend items that those neighbors interacted while Matrix factorization works by decomposing the user-item matrix into the product of two lower dimensionality rectangular matrices.</p>
-<p>RMSE for Matrix Factorization is better than the Collaborative Filtering Model.</p>
-<p>Tuning SVD matrix factorization model is not improving the base line SVD much. Matrix Factorization has lower RMSE due to the reason that it assumes that both items and users are present in some low dimensional space describing their properties and recommend a item based on its proximity to the user in the latent space.</p>
+<p>RMSE for Matrix Factorization is better than the Collaborative Filtering Model. Tuning SVD matrix factorization model is not improving the base line SVD much. Matrix Factorization has lower RMSE due to the reason that it assumes that both items and users are present in some low dimensional space describing their properties and recommend a item based on its proximity to the user in the latent space.</p>
 </div>
 <section id="conclusions" class="cell markdown" id="TgDOPCXOvOOM">
 <h3><strong>Conclusions</strong></h3>
@@ -2560,10 +2501,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </ul>
 </div>
 <div class="cell markdown" id="4XP9B9bVvOOM">
-<p>We also understood advantages/disadvantages of these recommendation systems and when to use which kind of recommendation systems. Once we build these recommendation systems, we can use <strong>A/B Testing</strong> to measure the effectiveness of these systems.</p>
-</div>
-<div class="cell markdown" id="fAQfeVYLvOOM">
-<p>Here is an article explaining how <a href="https://aws.amazon.com/blogs/machine-learning/using-a-b-testing-to-measure-the-efficacy-of-recommendations-generated-by-amazon-personalize/">Amazon use <strong>A/B Testing</strong></a> to measure effectiveness of its recommendation systems.</p>
+<p>We also understood advantages/disadvantages of these recommendation systems and when to use which kind of recommendation systems. Once we build these recommendation systems, we can use <strong>A/B Testing</strong> to measure the effectiveness of these systems. Here is an <a href="https://aws.amazon.com/blogs/machine-learning/using-a-b-testing-to-measure-the-efficacy-of-recommendations-generated-by-amazon-personalize/">article explaining how Amazon use A/B Testing</a> to measure effectiveness of its recommendation systems.</p>
 </div>
 </body>
 </html>
