@@ -9,7 +9,7 @@
 </head>
 <body>
 <section id="project---recommendation-systems-movie-recommendation-system" class="cell markdown" id="Cf3GloRNvOOG">
-<h1><strong>Project: Movie Recommendation System</strong></h1>
+<h1><strong>Movie Recommendation System</strong></h1>
 <h3><em>by Keanu Sida</em></h3>
 <h2 id="-context"><strong>Context</strong></h2>
 <p>Online streaming platforms like <strong>Netflix</strong> have plenty of movies in their repository and if we can build a <strong>Recommendation System</strong> to recommend <strong>relevant movies</strong> to users, based on their <strong>historical interactions</strong>, this would <strong>improve customer satisfaction</strong> thereby improving the revenue of the platform. The techniques employed here can be employed for any item for which a recommendation system is appropriate.</p>
@@ -141,7 +141,7 @@ memory usage: 3.1 MB
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rating <span class="op">=</span> rating.drop([<span class="st">&#39;timestamp&#39;</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <section id="question-1-exploring-the-dataset-7-marks" class="cell markdown" id="mHOFHmoBwIAw">
-<h2><strong>Step 1: Exploring the Dataset</strong></h2>
+<h2><strong>Exploring the Dataset</strong></h2>
 <p>Let's explore the dataset and answer some basic data-related questions:</p>
 <p><strong>What do the top 5 rows of the data set look like?</strong></p>
 </section>
@@ -287,12 +287,11 @@ memory usage: 3.1 MB
 </div>
 </div>
 <section id="q-12-describe-the-distribution-of-ratings-1-mark" class="cell markdown" id="fBZYy0HavOOH">
-<h3><strong>Q 1.2 Describe the distribution of ratings. (1 Mark)</strong></h3>
+<h3><strong>Describing the distribution of ratings:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="12" data-colab="{&quot;height&quot;:293,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="lO-EYEl3wIA2" data-outputId="7d7ab750-56bc-4656-9970-0c99cdf2d2d1">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">4</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______and complete the code</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sns.countplot(x <span class="op">=</span> <span class="st">&quot;rating&quot;</span>, data <span class="op">=</span> rating)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.tick_params(labelsize <span class="op">=</span> <span class="dv">10</span>)</span>
@@ -301,7 +300,6 @@ memory usage: 3.1 MB
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Number of Ratings&quot;</span>, fontsize <span class="op">=</span> <span class="dv">10</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="output display_data">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/954937daaf2bd7938cb76c2853611c572c02f4bc.png" /></p>
 </div>
 </div>
 <div class="cell markdown" id="vgRDrtHhwIA4">
@@ -309,7 +307,7 @@ memory usage: 3.1 MB
 <p>The ratings are biased towards these 3 numbers significantly more than others.</p>
 </div>
 <section id="q-13-what-is-the-total-number-of-unique-users-and-unique-movies-1-mark" class="cell markdown" id="UOBD03d9vOOH">
-<h3><strong>Q 1.3 What is the total number of unique users and unique movies? (1 Mark)</strong></h3>
+<h3><strong>Total number of unique users and unique movies:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="13" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="RMpbsZGGvOOH" data-outputId="9662d882-bba8-4ee3-beaf-d2e6b37a72fb">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding number of unique users</span></span>
@@ -334,7 +332,7 @@ memory usage: 3.1 MB
 <p>There are <strong>9066</strong> unique movies in the data set.</p>
 </div>
 <section id="q-14-is-there-a-movie-in-which-the-same-user-interacted-with-it-more-than-once-1-mark" class="cell markdown" id="mR9tzSzTvOOH">
-<h3><strong>Q 1.4 Is there a movie in which the same user interacted with it more than once? (1 Mark)</strong></h3>
+<h3><strong>Movies with which the same user interacted more than once:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="15" data-colab="{&quot;height&quot;:455,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="xstEDCVfvOOH" data-outputId="1ea904d0-b887-446d-d0ae-0b719f392c3e">
 <div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rating.groupby([<span class="st">&#39;userId&#39;</span>, <span class="st">&#39;movieId&#39;</span>]).count()</span></code></pre></div>
@@ -509,10 +507,10 @@ memory usage: 3.1 MB
 <p>The sum of ratings is equal to the total number of ratings. This implies that there is only one interaction between a pair of items and a user.</p>
 </div>
 <section id="q-15-which-is-the-most-interacted-movie-in-the-dataset-1-mark" class="cell markdown" id="JQgjqRnevOOI">
-<h3><strong>Q 1.5 Which is the most interacted movie in the dataset? (1 Mark)</strong></h3>
+<h3><strong>The most interacted-with movie in the dataset:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="17" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="4LBbXdoDvOOI" data-outputId="373c5080-b0dd-4eb7-c05c-8c8a6c05bef8">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rating[<span class="st">&#39;movieId&#39;</span>].value_counts()</span></code></pre></div>
 <div class="output execute_result" data-execution_count="17">
 <pre><code>356       341
@@ -544,17 +542,16 @@ Name: movieId, Length: 9066, dtype: int64</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="output display_data">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/727e196128f88462b72943c4a8dbe273a53d25dd.png" /></p>
 </div>
 </div>
 <div class="cell markdown" id="0pQn17ro2N9s">
 <p>This movie appears to be popular in a positive way, as a relatively high proportion of its ratings are 4.0 or 5.0 relative to the average of the whole data set.</p>
 </div>
 <section id="q-16-which-user-interacted-the-most-with-any-movie-in-the-dataset-1-mark" class="cell markdown" id="0kXJ_iTEvOOI">
-<h3><strong>Q 1.6 Which user interacted the most with any movie in the dataset? (1 Mark)</strong></h3>
+<h3><strong>Which users have the highest interactivity:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="19" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="t7ehlMLDvOOI" data-outputId="e9e080d0-fd87-438d-e59f-d884c1d93ccf">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>rating[<span class="st">&#39;userId&#39;</span>].value_counts()</span></code></pre></div>
 <div class="output execute_result" data-execution_count="19">
 <pre><code>547    2391
@@ -575,7 +572,7 @@ Name: userId, Length: 671, dtype: int64</code></pre>
 <p>The user with the ID 547 interacted the most with movies in the dataset.</p>
 </div>
 <section id="q-17-what-is-the-distribution-of-the-user-movie-interactions-in-this-dataset-1-mark" class="cell markdown" id="lHReghdivOOI">
-<h3><strong>Q 1.7 What is the distribution of the user-movie interactions in this dataset? (1 Mark)</strong></h3>
+<h3><strong>Distribution of the user-movie interactions:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="20" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="0XArWJ7l2N9v" data-outputId="2346a04c-951e-4c13-db94-8b0fa9a0dfe7">
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding user-movie interactions distribution</span></span>
@@ -608,18 +605,17 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="output display_data">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/6170cd2edc6e0333998521650f0c6488c83766af.png" /></p>
 </div>
 </div>
 <div class="cell markdown" id="vmj5nPiN2N9w">
 <p>The distribution is highly skewed right. Very few users interacted with more than 50 movies.</p>
 </div>
 <div class="cell markdown" id="knK9ML0bwIBR">
-<h4 id="as-we-have-now-explored-the-data-lets-start-building-recommendation-systems">As we have now explored the data, let's start building Recommendation systems</h4>
-<h2 id="question-2-create-rank-based-recommendation-system-3-marks"><strong>Question 2: Create Rank-Based Recommendation System (3 Marks)</strong></h2>
+<h4 id="as-we-have-now-explored-the-data-lets-start-building-recommendation-systems">Now that we've explored the data, let's start building some recommendation systems!</h4>
+<h2 id="question-2-create-rank-based-recommendation-system-3-marks"><strong>Creating A Rank-Based Recommendation System</strong></h2>
 </div>
 <section id="model-1-rank-based-recommendation-system" class="cell markdown" id="CqFN5jDJvOOJ">
-<h3><strong>Model 1: Rank-Based Recommendation System</strong></h3>
+<h3><strong>Context</strong></h3>
 </section>
 <div class="cell markdown" id="W26vIRn1vOOJ">
 <p>Rank-based recommendation systems provide recommendations based on the most popular items. This kind of recommendation system is useful when we have <strong>cold start</strong> problems. Cold start refers to the issue when we get a new user into the system and the machine is not able to recommend movies to the new user, as the user did not have any historical interactions in the dataset. In those cases, we can use rank-based recommendation system to recommend movies to the new user.</p>
@@ -628,7 +624,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>To build the rank-based recommendation system, we take <strong>average</strong> of all the ratings provided to each movie and then rank them based on their average rating.</p>
 </div>
 <div class="cell code" data-execution_count="24" id="xuMR3XFIvOOK">
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating average ratings</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>average_rating <span class="op">=</span> rating.groupby(<span class="st">&#39;movieId&#39;</span>).mean()[<span class="st">&#39;rating&#39;</span>]</span>
@@ -800,7 +796,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <h4><strong>Recommending top 5 movies with 50 minimum interactions based on popularity</strong></h4>
 </section>
 <div class="cell code" data-execution_count="28" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="u-JX_ES9vOOK" data-outputId="2ea0c319-9185-4d8f-bb74-eec92d73b682">
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(top_n_movies(final_rating, <span class="dv">5</span>, <span class="dv">50</span>))</span></code></pre></div>
 <div class="output execute_result" data-execution_count="28">
 <pre><code>[858, 318, 969, 913, 1221]</code></pre>
@@ -810,7 +806,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <h4><strong>Recommending top 5 movies with 100 minimum interactions based on popularity</strong></h4>
 </section>
 <div class="cell code" data-execution_count="29" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="U2wvxF2rvOOK" data-outputId="81a4717e-f7ee-471a-9ac9-cec85d2e0d52">
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(top_n_movies(final_rating, <span class="dv">5</span>, <span class="dv">100</span>))</span></code></pre></div>
 <div class="output execute_result" data-execution_count="29">
 <pre><code>[858, 318, 1221, 50, 527]</code></pre>
@@ -820,26 +816,24 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <h4><strong>Recommending top 5 movies with 200 minimum interactions based on popularity</strong></h4>
 </section>
 <div class="cell code" data-execution_count="30" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="t6ziQvDgvOOK" data-outputId="af8b4c1f-9e12-449e-f149-38abf85739c4">
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(top_n_movies(final_rating, <span class="dv">5</span>, <span class="dv">200</span>))</span></code></pre></div>
 <div class="output execute_result" data-execution_count="30">
 <pre><code>[858, 318, 50, 527, 608]</code></pre>
 </div>
 </div>
 <div class="cell markdown" id="r4vrsunx2N91">
-<p>Now that we have seen <strong>how to apply the Rank-Based Recommendation System</strong>, let's apply the <strong>Collaborative Filtering Based Recommendation Systems</strong>.</p>
+<p>Now let's assume we've got some additional data to work with. We can utilize <strong>Collaborative Filtering Based Recommendation Systems</strong> to better understand the needs of the user and thereby improve UX.</p>
 </div>
 <section id="model-2-user-based-collaborative-filtering-recommendation-system-7-marks" class="cell markdown" id="sJI5kiiGvOOK">
-<h2><strong>Model 2: User based Collaborative Filtering Recommendation System (7 Marks)</strong></h2>
+<h2><strong>User-Based Collaborative Filtering Recommendation System</strong></h2>
 </section>
 <div class="cell markdown" id="wVjPUvj82N92">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/85319b4d763f981ed9401685dcfcba5b9d9158ee.png" alt="collaborative_filtering.PNG" /></p>
 </div>
 <div class="cell markdown" id="H4yaWX37vOOK">
-<p>In the above <strong>interactions matrix</strong>, out of users B and C, which user is most likely to interact with the movie, "The Terminal"?</p>
 </div>
 <div class="cell markdown" id="QoSujZuuvOOK">
-<p>In this type of recommendation system, <code>we do not need any information</code> about the users or items. We only need user item interaction data to build a collaborative recommendation system. For example - <ol> <li><b>Ratings</b> provided by users. For example - ratings of books on goodread, movie ratings on imdb etc</li> <li><b>Likes</b> of users on different facebook posts, likes on youtube videos</li> <li><b>Use/buying</b> of a product by users. For example - buying different items on e-commerce sites</li> <li><b>Reading</b> of articles by readers on various blogs</li> </ol></p>
+<p>In this type of recommendation system, we do not need any information about the users or items. We only need user item interaction data to build a collaborative recommendation system. For example - <ol> <li><b>Ratings</b> provided by users. For example - ratings of books on goodread, movie ratings on imdb etc</li> <li><b>Likes</b> of users on different facebook posts, likes on youtube videos</li> <li><b>Use/buying</b> of a product by users. For example - buying different items on e-commerce sites</li> <li><b>Reading</b> of articles by readers on various blogs</li> </ol></p>
 </div>
 <div class="cell markdown" id="A_3GtPzuvOOK">
 <p><strong>Types of Collaborative Filtering</strong></p>
@@ -853,12 +847,6 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <li><p>Model based</p></li>
 </ul>
 </div>
-<section id="building-similarityneighborhood-based-collaborative-filtering" class="cell markdown" id="0D3MuFHqvOOK">
-<h4><strong>Building Similarity/Neighborhood based Collaborative Filtering</strong></h4>
-</section>
-<div class="cell markdown" id="vyCEv8eJvOOK">
-<p><img src="vertopal_e2f49f1f92414f9cbcee8e1939566e1a/de4b023e5b167c6706b2c94b9b600b8b8ead81b0.png" alt="test_image" /></p>
-</div>
 <section id="building-a-baseline-user-user-similarity-based-recommendation-system" class="cell markdown" id="skzc0N1_nVNB">
 <h3><strong>Building a baseline user-user similarity based recommendation system</strong></h3>
 </section>
@@ -870,7 +858,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </ul>
 </div>
 <div class="cell markdown" id="8hxjJMTwnVNB">
-<p>Below we are loading the <strong><code>rating</code> dataset</strong>, which is a <strong>pandas DataFrame</strong>, into a <strong>different format called <code>surprise.dataset.DatasetAutoFolds</code></strong>, which is required by this library. To do this, we will be <strong>using the classes <code>Reader</code> and <code>Dataset</code></strong>. Finally splitting the data into train and test set.</p>
+<p>We'll load the <strong><code>rating</code> dataset</strong>, which is a <strong>pandas DataFrame</strong>, into a different format called <code>surprise.dataset.DatasetAutoFolds</code>, which is required by this library. To do this, we will be using the classes <code>Reader</code> and <code>Dataset</code>. Finally, we'll split the data into train and test sets.</p>
 </div>
 <section id="making-the-dataset-into-surprise-dataset-and-splitting-it-into-train-and-test-set" class="cell markdown" id="n3PpFZlW0q_d">
 <h4><strong>Making the dataset into surprise dataset and splitting it into train and test set</strong></h4>
@@ -889,7 +877,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <h4><strong>Build the first baseline similarity based recommendation system using cosine similarity and KNN</strong></h4>
 </section>
 <div class="cell code" data-execution_count="33" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="vO3FL7iape8A" data-outputId="33b3448e-b6a9-411f-e5c1-ad69be49246f">
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"></span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sim_options <span class="op">=</span> {<span class="st">&#39;name&#39;</span>: <span class="st">&#39;cosine&#39;</span>,</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;user_based&#39;</span>: <span class="va">True</span>}</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -913,13 +901,13 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 </div>
 </div>
 <section id="q-31-what-is-the-rmse-for-baseline-user-based-collaborative-filtering-recommendation-system-1-mark" class="cell markdown" id="6y7zChf8wIBr">
-<h3><strong>Q 3.1 What is the RMSE for baseline user based collaborative filtering recommendation system? (1 Mark)</strong></h3>
+<h3><strong>RMSE for baseline user based collaborative filtering recommendation system</strong></h3>
 </section>
 <div class="cell markdown" id="yE5kvdZenVNC">
 <p>The RMSE for the baseline system is 0.<strong>9925</strong>.</p>
 </div>
 <section id="q-32-what-is-the-predicted-rating-for-an-user-with-userid4-and-for-movieid10-and-movieid3-1-mark" class="cell markdown" id="qelE7GyrwIBs">
-<h3><strong>Q 3.2 What is the Predicted rating for an user with userId=4 and for movieId=10 and movieId=3? (1 Mark)</strong></h3>
+<h3><strong>Predicted rating for an user with a specific user (e.g. userId=4: movieId=10 or movieId=3)</strong></h3>
 </section>
 <div class="cell markdown" id="reFD0-nsnVNC">
 <p>Let's us now predict rating for an user with <code>userId=4</code> and for <code>movieId=10</code></p>
@@ -954,7 +942,7 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>Movie 3 has an estimated rating of <strong>3.20</strong> for user 4.</p>
 </div>
 <section id="improving-user-user-similarity-based-recommendation-system-by-tuning-its-hyper-parameters" class="cell markdown" id="ejjof6csnVNF">
-<h3><strong>Improving user-user similarity based recommendation system by tuning its hyper-parameters</strong></h3>
+<h3><strong>Improving user-user similarity based recommendation system by tuning its hyper-parameters:</strong></h3>
 </section>
 <div class="cell markdown" id="x_kxe-_JnVNF">
 <p>Below we will be tuning hyper-parmeters for the <code>KNNBasic</code> algorithms. Let's try to understand different hyperparameters of KNNBasic algorithm -</p>
@@ -974,11 +962,10 @@ Name: movieId, Length: 671, dtype: int64</code></pre>
 <p>For more details please refer the official documentation <a href="https://surprise.readthedocs.io/en/stable/knn_inspired.html" class="uri">https://surprise.readthedocs.io/en/stable/knn_inspired.html</a></p>
 </div>
 <section id="q-33-perform-hyperparameter-tuning-for-the-baseline-user-based-collaborative-filtering-recommendation-system-and-find-the-rmse-for-tuned-user-based-collaborative-filtering-recommendation-system-3-marks" class="cell markdown" id="lTLnYn_JwIBx">
-<h3><strong>Q 3.3 Perform hyperparameter tuning for the baseline user based collaborative filtering recommendation system and find the RMSE for tuned user based collaborative filtering recommendation system? (3 Marks)</strong></h3>
+<h3><strong>Performing hyperparameter tuning for the baseline user based collaborative filtering recommendation system and finding the RMSE for tuned user based collaborative filtering recommendation system:</strong></h3>
 </section>
 <div class="cell code" data-execution_count="38" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="KpGhU15gpfHg" data-outputId="95e38fdc-fb04-4c74-ed02-f8aa1d2b3192">
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove _______ and complete the code</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python">
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting up parameter grid to tune the hyperparameters</span></span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&#39;k&#39;</span>: [<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>], <span class="st">&#39;min_k&#39;</span>: [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>],</span>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">&#39;sim_options&#39;</span>: {<span class="st">&#39;name&#39;</span>: [<span class="st">&#39;msd&#39;</span>, <span class="st">&#39;cosine&#39;</span>],</span>
