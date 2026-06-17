@@ -1,21 +1,3 @@
-/* Deprecation notice */
-.deprecated-banner {
-    background-color: #1e1b4b;
-    color: #e0e7ff;
-    padding: 0.75rem 1rem;
-    text-align: center;
-    border-bottom: 2px solid #6366f1;
-}
-
-.deprecated-banner a {
-    color: #c4b5fd;
-    font-weight: bold;
-}
-
-.deprecated-banner a:hover {
-    color: #fff;
-}
-
 /* Reset browser styles */
 * {
     margin: 0;

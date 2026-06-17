@@ -3,7 +3,7 @@
 > **Deprecated — no longer live.**  
 > My current portfolio is at **[keanucodes.netlify.app](https://keanucodes.netlify.app/)**, maintained in [Keanus-Portfolio](https://github.com/keanu-sida/Keanus-Portfolio).
 
-This repository is an **archived snapshot** of my earlier GitHub Pages portfolio (static HTML/CSS). GitHub Pages has been disabled for this repo so it is not published at `keanu-sida.github.io`.
+This repository is an **archived snapshot** of my earlier GitHub Pages portfolio. The homepage now redirects to the current site; GitHub Pages cannot be fully disabled on a `username.github.io` repository, so the root URL forwards visitors to Netlify.
 
 ## Why keep this repo?
 
