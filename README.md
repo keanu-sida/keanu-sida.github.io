@@ -1,40 +1,34 @@
-# Keanu Sida | Portfolio
+# Keanu Sida | Portfolio (Archived)
 
-## Welcome to my portfolio project. This repository contains the code for my personal portfolio showcasing my skills, experience, and projects.
+> **Deprecated — no longer live.**  
+> My current portfolio is at **[keanucodes.netlify.app](https://keanucodes.netlify.app/)**, maintained in [Keanus-Portfolio](https://github.com/keanu-sida/Keanus-Portfolio).
 
-### Overview
-The portfolio is designed to be simple and efficient. It provides a glimpse into my professional background, technical capabilities, and some of the projects I've undertaken. The use of Font Awesome icons has been integrated to visually represent technical skills.
+This repository is an **archived snapshot** of my earlier GitHub Pages portfolio (static HTML/CSS). GitHub Pages has been disabled for this repo so it is not published at `keanu-sida.github.io`.
 
-### Features
-- Sticky Navigation: Enables easy access to various sections of the portfolio.
-- Dynamic Skills Section: Aesthetically pleasing icons representing technical skills.
-- Projects: Links to my top projects, including a detailed overview of each.
-- Experience Timeline: A brief description of my professional journey.
-- Contact & Social Links: Easy way for visitors to connect with me.
-### Technology Stack
-- HTML5
-- CSS3
-- JavaScript
-- Font Awesome for Icons
-### How to View
-- Clone this repository:
-bash
-Copy code
-git clone https://github.com/keanu-sida/portfolio.git
-Navigate to the project directory:
-bash
-Copy code
-cd portfolio
-Open index.html in your favorite browser.
-Alternatively, visit the live version here.
+## Why keep this repo?
 
-### Feedback & Contribution
-Feedback, issues, and pull requests are always welcome. For major changes, please open an issue first to discuss the intended change.
+Historical project demos and coursework still live here (Film Finder, hotel ML, movie recommender, etc.). The code remains available for reference and clone-and-run locally.
 
-### License
-This project is open source and available under the MIT License.
+## View locally
 
-### Connect with Me
-LinkedIn.com/in/keanu-sida
-x.com/keanusida
-Email: keanu.sida@gmail.com
+```bash
+git clone https://github.com/keanu-sida/keanu-sida.github.io.git
+cd keanu-sida.github.io
+# Open index.html in a browser
+```
+
+## Current portfolio
+
+- **Live site:** https://keanucodes.netlify.app/
+- **Source:** https://github.com/keanu-sida/Keanus-Portfolio
+- **Pipeline (job tracker):** https://keanucodes.netlify.app/pipeline/
+
+## License
+
+MIT
+
+## Contact
+
+- Email: keanu.sida@gmail.com
+- [LinkedIn](https://linkedin.com/in/keanu-sida)
+- [GitHub](https://github.com/keanu-sida)
